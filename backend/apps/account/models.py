@@ -87,7 +87,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     avatar = VersatileImageField(upload_to="user-avatars", blank=True, null=True)
 
-    # Add required fields from the fields i created
+    updated_at = models.DateTimeField(auto_now=True, null=True)
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
+
+    # Add required fields from the fields created
     REQUIRED_FIELDS = ["email"]
 
     USERNAME_FIELD = "username"
