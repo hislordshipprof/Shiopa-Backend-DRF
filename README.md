@@ -48,3 +48,12 @@ Run the development server
 python manage.py runserver
 
 ```
+
+Default Admin User
+
+```bash
+# Username : admin
+# Email: admin@email.com
+# Password: Password
+
+```
