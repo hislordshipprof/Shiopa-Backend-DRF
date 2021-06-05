@@ -43,11 +43,17 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
 
+    'mptt',
+    'versatileimagefield',
+
     'backend.apps.core',
     'backend.apps.account',
     'backend.apps.product',
     'backend.apps.order',
+    'backend.apps.seo',
 ]
+
+AUTH_USER_MODEL = "account.User"
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
