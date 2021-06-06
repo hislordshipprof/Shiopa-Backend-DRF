@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# Shiopa-Backend-DjangoRestFramework
-Siopa is an ecommerce application built on Django Rest Framework
-=======
 # Shiopa DRF Backend
 
 ## Quick Setup
@@ -61,4 +57,3 @@ Default Admin User
 # Password: Password
 
 ```
->>>>>>> 4b51feeb8add4f6812b62fb9998f19ebcb404c23
