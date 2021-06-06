@@ -43,8 +43,17 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
 
-    'apps.core',
+    'mptt',
+    'versatileimagefield',
+
+    'backend.apps.core',
+    'backend.apps.account',
+    'backend.apps.product',
+    'backend.apps.order',
+    'backend.apps.seo',
 ]
+
+AUTH_USER_MODEL = "account.User"
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
@@ -139,3 +148,11 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# -----------------------------------------------------------------------------
+# Defaults
+# -----------------------------------------------------------------------------
+
+DEFAULT_DECIMAL_PLACES = 3
+DEFAULT_MAX_DIGITS = 12
+DEFAULT_CURRENCY_CODE_LENGTH = 3
