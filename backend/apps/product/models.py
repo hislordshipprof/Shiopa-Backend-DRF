@@ -120,9 +120,9 @@ class ProductReview(models.Model):
     product = models.ForeignKey(Product, related_name="reviews", on_delete=models.CASCADE)
     name = models.CharField(max_length=255, verbose_name= _("Name"))
     comment = models.CharField(max_length=255,blank=True, null=True, verbose_name=_("Comment"))
-    starts = models.IntegerField(choices=SCALE, verbose_name=_("Rating on five stars"))
+    stars = models.IntegerField(choices=SCALE, verbose_name=_("Rating on five stars"))
     created_at = models.DateTimeField(default=timezone.now, editable=False, verbose_name=_("Date Created"))
     updated_at = models.DateTimeField(auto_now=True, null=True, verbose_name=_("Date Updadet"))
 
     def __str__(self):
-        return self.starts
+        return self.stars
