@@ -8,10 +8,9 @@ from versatileimagefield.fields import VersatileImageField
 from django.utils.translation import gettext_lazy as _
 
 from backend.apps.account.models import User
-from backend.apps.seo.models import SeoModel
 
 
-class Category(MPTTModel, SeoModel):
+class Category(MPTTModel):
     name = models.CharField(max_length=250)
     slug = models.SlugField(max_length=255, unique=True, allow_unicode=True)
     parent = models.ForeignKey(
@@ -28,11 +27,14 @@ class Category(MPTTModel, SeoModel):
     objects = models.Manager()
     tree = TreeManager()
 
+    class Meta:
+        verbose_name_plural ='Categories'
+
     def __str__(self) -> str:
         return self.name
 
 
-class Product(SeoModel):
+class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
   
     name = models.CharField(max_length=250)

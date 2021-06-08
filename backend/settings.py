@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'backend.apps.account',
     'backend.apps.product',
     'backend.apps.order',
-    'backend.apps.seo',
+    'backend.apps.store',
 ]
 
 AUTH_USER_MODEL = "account.User"
