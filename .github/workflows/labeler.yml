@@ -1,0 +1,12 @@
+# Add 'repo' label to any root file changes
+repo:
+- ./*
+
+# Add '@domain/core' label to any change within the 'core' package
+@apps:
+- ./backend/apps/*
+- backend/apps/**/*
+
+# Add 'test' label to any change to *.spec.js files within the source dir
+test:
+- ./**/test.py
