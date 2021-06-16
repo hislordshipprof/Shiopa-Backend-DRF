@@ -40,6 +40,8 @@ celerybeat-schedule
 celerybeat.pid
 
 
+db.sqlite3
+
 # Environments
 .env
 .venv
