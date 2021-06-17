@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Django default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -26,12 +27,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Rest Framework Apps
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
     'djoser',
+
+    # Project Apps
     'apps.store',
     'apps.product',
+    'apps.core',
 ]
 
 
