@@ -21,6 +21,9 @@ class ProductAdmin(admin.ModelAdmin):
         }),
         ('Stock', {
             'fields': ('sku', 'available_to_purchase')
+        }),
+        ('Relationship', {
+            'fields': ('section', 'category')
         })
 
     )
