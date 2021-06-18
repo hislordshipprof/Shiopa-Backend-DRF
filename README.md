@@ -65,6 +65,7 @@ Default Admin User
 ## EndPoints
 
 - `/api/v1/all-categories` **Get all categories**
+  - Method `get`
   - Returns an array of all available categories
   - Sample Response
   ```json
@@ -125,6 +126,7 @@ Default Admin User
   ]
   ```
 - `/api/v1/all-products/` **Get all products**
+  - Method `get`
   - Returns an array of all products in the store
   - Sample Response
   ```json
@@ -154,8 +156,11 @@ Default Admin User
   ]
   ```
 - `/api/v1/products/<category_slug>/<product_slug>/`
-  - Returns a the details of a product
+
+  - Method `get`
+  - Returns the details of a product
   - Sample Response
+
   ```json
   {
     "id": 1,
@@ -179,4 +184,79 @@ Default Admin User
       }
     ]
   }
+  ```
+
+- `/api/v1/products/<category_slug>/` **Gets details of a specific category**
+
+  - Method `get`
+  - Returns the details of a category
+  - Sample Response
+
+  ```json
+  {
+    "id": 3,
+    "name": "Crop Top",
+    "slug": "crop_top",
+    "image_url": "http://127.0.0.1:8000/media/images/crop_top.jfif",
+    "image_alt": "crop_top",
+    "parent": 1,
+    "get_absolute_url": "/crop_top/",
+    "products": [
+      {
+        "id": 1,
+        "name": "Crop Top",
+        "slug": "crop_top",
+        "description": "Crop top description",
+        "additional_info": "",
+        "price": "500.00",
+        "discount_price": null,
+        "sku": null,
+        "available_to_purchase": true,
+        "get_absolute_url": "/crop_top/crop_top/",
+        "main_image_url": "http://127.0.0.1:8000/media/images/crop_top_0qe9D6a.jfif",
+        "get_thumbnail": "http://127.0.0.1:8000/media/thumbnail/images/crop_top_0qe9D6a.jfif",
+        "images": [
+          {
+            "id": 2,
+            "title": "Crop Top",
+            "alt_text": "crop top image",
+            "image_url": "http://127.0.0.1:8000/media/images/crop_top_6WJNkBu.jfif"
+          }
+        ]
+      }
+    ]
+  }
+  ```
+
+- `/api/v1/search/`
+  - Method `post`
+  - Params
+    - query | Search term (could be part of the product name or product description)
+  - Returns a list of products depending on the query param passed
+  - Sample Response
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "Crop Top",
+      "slug": "crop_top",
+      "description": "Crop top description",
+      "additional_info": "",
+      "price": "500.00",
+      "discount_price": null,
+      "sku": null,
+      "available_to_purchase": true,
+      "get_absolute_url": "/crop_top/crop_top/",
+      "main_image_url": "http://127.0.0.1:8000/media/images/crop_top_0qe9D6a.jfif",
+      "get_thumbnail": "http://127.0.0.1:8000/media/thumbnail/images/crop_top_0qe9D6a.jfif",
+      "images": [
+        {
+          "id": 2,
+          "title": "Crop Top",
+          "alt_text": "crop top image",
+          "image_url": "http://127.0.0.1:8000/media/images/crop_top_6WJNkBu.jfif"
+        }
+      ]
+    }
+  ]
   ```
