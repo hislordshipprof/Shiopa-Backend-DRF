@@ -260,3 +260,40 @@ Default Admin User
     }
   ]
   ```
+- `/api/v1/all-sections/`
+  - Method `get`
+  - Returns the list of functions in the database according to the ordering
+  - Sample Response
+  ```json
+  [
+    {
+      "id": 1,
+      "title": "Food",
+      "image_url": "http://127.0.0.1:8000/media/images/jollof.jfif",
+      "products": [
+        {
+          "id": 1,
+          "name": "Crop Top",
+          "slug": "crop_top",
+          "description": "Crop top description",
+          "additional_info": "",
+          "price": "500.00",
+          "discount_price": null,
+          "sku": null,
+          "available_to_purchase": true,
+          "get_absolute_url": "/crop_top/crop_top/",
+          "main_image_url": "http://127.0.0.1:8000/media/images/crop_top_0qe9D6a.jfif",
+          "get_thumbnail": "http://127.0.0.1:8000/media/thumbnail/images/crop_top_0qe9D6a.jfif",
+          "images": [
+            {
+              "id": 2,
+              "title": "Crop Top",
+              "alt_text": "crop top image",
+              "image_url": "http://127.0.0.1:8000/media/images/crop_top_6WJNkBu.jfif"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  ```

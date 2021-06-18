@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import fields
 from rest_framework import serializers
 from apps.product.models import Category, Product
-
+from apps.core.models import Section
 from apps.core.serializers import ImageSerializer as CoreImageSerializer
 
 
@@ -42,4 +42,17 @@ class CategorySerializer(serializers.ModelSerializer):
             'parent',
             'get_absolute_url',
             'products'
+        )
+
+
+class SectionSerializer(serializers.ModelSerializer):
+    products = ProductSerializer(many=True)
+
+    class Meta:
+        model = Section
+        fields = (
+            'id',
+            'title',
+            'image_url',
+            'products',
         )
