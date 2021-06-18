@@ -3,11 +3,16 @@ from django.db.models import fields
 from rest_framework import serializers
 from apps.product.models import Category, Product
 
+from apps.core.serializers import ImageSerializer as CoreImageSerializer
+
 
 class ProductSerializer(serializers.ModelSerializer):
+    images = CoreImageSerializer(many=True)
+
     class Meta:
         model = Product
         fields = (
+            'id',
             'name',
             'slug',
             'description',
@@ -18,7 +23,8 @@ class ProductSerializer(serializers.ModelSerializer):
             'available_to_purchase',
             'get_absolute_url',
             'main_image_url',
-            'get_thumbnail'
+            'get_thumbnail',
+            'images'
         )
 
 
@@ -28,6 +34,7 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = (
+            'id',
             'name',
             'slug',
             'image_url',
