@@ -42,7 +42,7 @@ class Category(models.Model):
         """
         # Check if setting is on debug mode.
         if settings.DEBUG:
-            return "http://127.0.0.1"+self.image.url
+            return "http://127.0.0.1:8000"+self.image.url
         else:
             return self.image.url
 
@@ -107,7 +107,7 @@ class Product(models.Model):
         """
         # Check if setting is on debug mode.
         if settings.DEBUG:
-            return "http://127.0.0.1"+self.main_image.url
+            return "http://127.0.0.1:8000"+self.main_image.url
         else:
             return self.main_image.url
 
@@ -115,7 +115,7 @@ class Product(models.Model):
         if self.thumbnail:
             # Check if setting is on debug mode.
             if settings.DEBUG:
-                return "http://127.0.0.1"+self.thumbnail.url
+                return "http://127.0.0.1:8000"+self.thumbnail.url
             else:
                 return self.thumbnail.url
         else:

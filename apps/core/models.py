@@ -27,7 +27,7 @@ class Image(models.Model):
         """
         # Check if setting is on debug mode.
         if settings.DEBUG:
-            return "http://127.0.0.1"+self.image.url
+            return "http://127.0.0.1:8000"+self.image.url
         else:
             return self.image.url
 
