@@ -1,7 +1,7 @@
 from pathlib import Path
 from os import environ
 import django_heroku
-
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'apps.store',
     'apps.product',
     'apps.core',
+
+    # Storage
+    'gdstorage',
 ]
 
 
@@ -139,3 +142,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'cred.json')

@@ -1,16 +1,18 @@
 from django.db import models
 from django.conf import settings
 from django.db.models.fields import NullBooleanField
+from gdstorage.storage import GoogleDriveStorage
 
+gd_storage = GoogleDriveStorage()
 
 class Settings(models.Model):
     # Basic store settings
     store_name = models.CharField(max_length=255)
     store_tagline = models.CharField(
         max_length=500, help_text="This is the tagline of the store. Optional!")
-    store_logo = models.ImageField(upload_to='settings')
+    store_logo = models.ImageField(upload_to='settings', storage=gd_storage)
     favicon = models.ImageField(
-        upload_to="settings", help_text="This is the icon that would be shown on the title bar of the browser", null=True, blank=True)
+        upload_to="settings", storage=gd_storage,help_text="This is the icon that would be shown on the title bar of the browser", null=True, blank=True)
 
     # Contact settings
     store_phone_number = models.CharField(
@@ -41,21 +43,13 @@ class Settings(models.Model):
         """
         This method returns the url of the logo
         """
-        # Check if setting is on debug mode.
-        if settings.DEBUG:
-            return "http://127.0.0.1:8000"+self.store_logo.url
-        else:
-            return self.store_logo.url
+        return self.store_logo.url
 
     def favicon_url(self):
         """
         This method returns the url of the favicon
         """
-        # Check if setting is on debug mode.
-        if settings.DEBUG:
-            return "http://127.0.0.1:8000"+self.favicon.url
-        else:
-            return self.favicon.url
+        return self.favicon.url
 
     class Meta:
         verbose_name_plural = 'Store Settings'

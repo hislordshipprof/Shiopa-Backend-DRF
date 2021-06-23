@@ -5,6 +5,9 @@ of this project.
 """
 from django.db import models
 from django.conf import settings
+from gdstorage.storage import GoogleDriveStorage
+
+gd_storage = GoogleDriveStorage()
 
 
 class Image(models.Model):
@@ -16,7 +19,7 @@ class Image(models.Model):
     alt_text = models.CharField(
         max_length=255, null=True, blank=True,
         help_text="This would show whenever the image refuses to show")
-    image = models.ImageField(upload_to="images")
+    image = models.ImageField(upload_to="images", storage=gd_storage)
 
     def __str__(self):
         return self.title
