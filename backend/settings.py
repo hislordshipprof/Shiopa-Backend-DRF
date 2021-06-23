@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'apps.product',
     'apps.core',
 
-    # Storage
+    # Storages
     'gdstorage',
 ]
 
