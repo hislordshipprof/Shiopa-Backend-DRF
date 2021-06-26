@@ -64,3 +64,4 @@ __pycache__/
 # Translations
 *.mo
 *.pot
+cred.json

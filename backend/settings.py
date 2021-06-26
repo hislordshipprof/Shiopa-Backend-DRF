@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'apps.store',
     'apps.product',
     'apps.core',
+    'apps.account',
 
     # Storages
     'gdstorage',

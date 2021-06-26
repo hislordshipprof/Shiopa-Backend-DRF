@@ -53,3 +53,30 @@ class Settings(models.Model):
 
     class Meta:
         verbose_name_plural = 'Store Settings'
+
+
+class Currency(models.Model):
+    POSITION_CHOICES = (
+        ('right', 'Right'),
+        ('left', 'Left'),
+    )
+    
+    code = models.CharField(max_length=5, help_text='The code that represents the currency e.g NGN, USD')
+    exchange_rate = models.DecimalField(decimal_places=2, max_digits=19, help_text='The rate of the currency compared to USD')
+    symbol = models.CharField(max_length=3, null=True, blank=True, help_text='Optional. The sign that represents the currency e.g $, If not specified the currency code would be used instead.')
+    position = models.CharField(max_length=8, choices=POSITION_CHOICES, null=True, blank=True, default='left', help_text='Optional. Where is the currency symbol placed? Default is left')
+
+    class Meta:
+        verbose_name_plural = 'Currencies'
+
+    def __str__(self) -> str:
+        return self.code
+
+class Country(models.Model):
+    name = models.CharField(max_length=100, help_text='The name of the country')
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE, help_text='What currency do they use in this country')
+    class Meta:
+        verbose_name_plural = 'Countries'
+
+    def __str__(self) -> str:
+        return self.name
