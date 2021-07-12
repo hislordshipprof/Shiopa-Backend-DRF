@@ -1,5 +1,8 @@
 from django.contrib import admin
-from apps.store.models import Settings
+from apps.store.models import Settings, Country, Currency
+
+admin.site.register(Currency)
+admin.site.register(Country)
 
 
 class SettingsAdmin(admin.ModelAdmin):

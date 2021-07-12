@@ -1,16 +1,18 @@
 from django.db import models
 from django.conf import settings
 from django.db.models.fields import NullBooleanField
+from gdstorage.storage import GoogleDriveStorage
 
+gd_storage = GoogleDriveStorage()
 
 class Settings(models.Model):
     # Basic store settings
     store_name = models.CharField(max_length=255)
     store_tagline = models.CharField(
         max_length=500, help_text="This is the tagline of the store. Optional!")
-    store_logo = models.ImageField(upload_to='settings')
+    store_logo = models.ImageField(upload_to='settings', storage=gd_storage)
     favicon = models.ImageField(
-        upload_to="settings", help_text="This is the icon that would be shown on the title bar of the browser", null=True, blank=True)
+        upload_to="settings", storage=gd_storage,help_text="This is the icon that would be shown on the title bar of the browser", null=True, blank=True)
 
     # Contact settings
     store_phone_number = models.CharField(
@@ -41,21 +43,40 @@ class Settings(models.Model):
         """
         This method returns the url of the logo
         """
-        # Check if setting is on debug mode.
-        if settings.DEBUG:
-            return "http://127.0.0.1:8000"+self.store_logo.url
-        else:
-            return self.store_logo.url
+        return self.store_logo.url
 
     def favicon_url(self):
         """
         This method returns the url of the favicon
         """
-        # Check if setting is on debug mode.
-        if settings.DEBUG:
-            return "http://127.0.0.1:8000"+self.favicon.url
-        else:
-            return self.favicon.url
+        return self.favicon.url
 
     class Meta:
         verbose_name_plural = 'Store Settings'
+
+
+class Currency(models.Model):
+    POSITION_CHOICES = (
+        ('right', 'Right'),
+        ('left', 'Left'),
+    )
+    
+    code = models.CharField(max_length=5, help_text='The code that represents the currency e.g NGN, USD')
+    exchange_rate = models.DecimalField(decimal_places=2, max_digits=19, help_text='The rate of the currency compared to USD')
+    symbol = models.CharField(max_length=3, null=True, blank=True, help_text='Optional. The sign that represents the currency e.g $, If not specified the currency code would be used instead.')
+    position = models.CharField(max_length=8, choices=POSITION_CHOICES, null=True, blank=True, default='left', help_text='Optional. Where is the currency symbol placed? Default is left')
+
+    class Meta:
+        verbose_name_plural = 'Currencies'
+
+    def __str__(self) -> str:
+        return self.code
+
+class Country(models.Model):
+    name = models.CharField(max_length=100, help_text='The name of the country')
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE, help_text='What currency do they use in this country')
+    class Meta:
+        verbose_name_plural = 'Countries'
+
+    def __str__(self) -> str:
+        return self.name
