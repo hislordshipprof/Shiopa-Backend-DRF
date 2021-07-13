@@ -2,7 +2,7 @@ from pathlib import Path
 from os import environ
 import django_heroku
 import os
-
+import datetime
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,21 +30,55 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Rest Framework Apps
+     # Rest Framework Apps
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'djoser',
+
+    
+    #Swagger Settings
+    'drf_yasg',
 
     # Project Apps
     'apps.store',
     'apps.product',
     'apps.core',
     'apps.account',
+    'authentication',
 
     # Storages
     'gdstorage',
 ]
+
+
+#Swagger configurations
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
+
+
+#Simple jwt configurations
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=1),
+    'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=1),
+}
+
+#RestframeWork token configuration
+REST_FRAMEWORK = {
+    
+    'NON_FIELD_ERRORS_KEY': 'error',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 
 CORS_ALLOWED_ORIGINS = [
@@ -145,3 +179,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = os.path.join(BASE_DIR, 'cred.json')
+
+
+
+
+#Email configurations
+
+# Email Authentication 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'enter gmail address here or import it from .env files'
+EMAIL_HOST_PASSWORD = 'enter password of the gmail, it can be token from gmail'
+
